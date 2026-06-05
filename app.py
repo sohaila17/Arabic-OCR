@@ -10,7 +10,6 @@ import fknn
 from sklearn.model_selection import train_test_split, cross_val_score
 
 
-x = 22
 
 def load_images_from_folder(folder):
     images = []
