@@ -10,9 +10,6 @@ import fknn
 from sklearn.model_selection import train_test_split, cross_val_score
 
 
-
-#choose random sample 
-#x = np.random.randint(0,high=49)
 x = 22
 
 def load_images_from_folder(folder):
@@ -23,13 +20,6 @@ def load_images_from_folder(folder):
         if img is not None:
             img_after = pre.pre_processing(img)
             images.append(img_after)
-        #print a random image from the sample
-            
-        #if len(images)==x:
-        #cv2.imshow("before", img)
-        #key = cv2.waitKey(0)
-        #cv2.imshow("after", img_after)
-        #key = cv2.waitKey(0)
             
     final = np.asarray(images)
     
@@ -56,11 +46,6 @@ for i in range(len(im)):
     features.append(feature)
    
 features = np.asarray(features)
-'''
-for i in range(len(haralick_labels)):
-    acc = knn.k_nn(features[:,i],labels)
-    print ('acc for ',haralick_labels[i],' is ',acc)
-'''
 
 print('start')
 
@@ -86,5 +71,6 @@ xTrain, xTest, yTrain, yTest = train_test_split(new_features,labels)
 
 custModel = fknn.FuzzyKNN()
 
+scores = cross_val_score(cv=4,estimator=cusmodel, X=xTest,Y=yTest)
     
-print(cross_val_score(cv=4,estimator=cusmodel, X=xTest,Y=yTest))
+print(scores)
